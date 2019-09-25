@@ -43,6 +43,10 @@ Resources:
       CodeUri: smsResponderFunction/
       Handler: app.lambdaHandler
       Runtime: nodejs8.10
+      Environment:
+        Variables:
+          ApplicationId: !Ref ApplicationId
+          APIkey: !Ref APIkey      
       Policies:
       - Statement:
         - Sid: PinpointAccess
