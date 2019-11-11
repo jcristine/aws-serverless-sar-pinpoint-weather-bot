@@ -62,7 +62,7 @@ const smsResponder = async (event) => {
 	}
 
 	// Send the SMS response
-	var params = {
+	const params = {
 		ApplicationId: process.env.ApplicationId,
 		MessageRequest: {
 			Addresses: {
