@@ -16,7 +16,7 @@
 'use strict'
 
 const AWS = require('aws-sdk')
-AWS.config.update({'region': 'us-east-1'})
+AWS.config.update({ region: process.env.AWS_REGION || 'us-east-1' })
 
 const { getWeather } = require('./getWeather')
 const KEYWORD = 'weather'
