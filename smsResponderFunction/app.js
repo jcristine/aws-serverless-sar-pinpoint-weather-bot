@@ -30,7 +30,7 @@ const { smsResponder }  = require('./smsResponder')
 // Calls the SMS responder function for each text message passed in the event parameter.
 
 exports.lambdaHandler = async (event, context) => {
-	console.log('Starting handler')
+  console.log('Starting handler')
   
   await Promise.all(
     event.Records.map(async (record) => {
@@ -43,7 +43,7 @@ exports.lambdaHandler = async (event, context) => {
     })
   )
 
-	return  {
-		'statusCode': 200
-	}
+  return  {
+    'statusCode': 200
+  }
 }
