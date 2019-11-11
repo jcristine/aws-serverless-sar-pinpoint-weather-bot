@@ -5,6 +5,8 @@ Incoming text message must conform to the format "weather *zipcode*", else it wi
 
 Important: this application uses Amazon Pinpoint's SMS long codes. There are costs associated with reserving a phone number and sending text messages. Please see the current [Amazon Pinpoint pricing](https://aws.amazon.com/pinpoint/pricing/) for details.
 
+**See the full walkthrough for this application at https://aws.amazon.com/blogs/compute/building-a-serverless-weather-bot-with-two-way-sms-aws-sam-and-aws-lambda.**
+
 ```bash
 .
 ├── README.MD                   <-- This instructions file
