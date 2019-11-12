@@ -1,6 +1,6 @@
 # Pinpoint Weather Bot
 
-** This application currently only works for US regions and phone numbers but I'll expand to other regions in the near future. **
+**This application currently only works for US regions and phone numbers but I'll expand to other regions in the near future.**
 
 Pinpoint Weather Bot responds to a text message from a user with current weather conditions.
 Incoming text message must conform to the format "weather *zipcode*", else it will be ignored.
