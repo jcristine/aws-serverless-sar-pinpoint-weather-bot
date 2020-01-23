@@ -12,8 +12,8 @@ Metadata:
       <<zipcode>>') with current weather conditions.
     Author: James Beswick
     SpdxLicenseId: mit-0
-    LicenseUrl: s3://jbesw-sar-repos-uswest2/bb66c8f9891604947010c7e819f4d7ce
-    ReadmeUrl: s3://jbesw-sar-repos-uswest2/792f2625c22cf61f22e1988c559bca47
+    LicenseUrl: s3://jbesw-weather-bot/dccb8cfd068b1021fcc401746d63165a
+    ReadmeUrl: s3://jbesw-weather-bot/c63f5d666c5c01eca7fd07bfac66a220
     Labels:
     - SMS
     - weather
@@ -43,9 +43,15 @@ Resources:
   smsResponderFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://jbesw-sar-repos-uswest2/db48be8ad410cf3a6cab944a520c2027
+      CodeUri: s3://jbesw-weather-bot/f54b5575c8d9e619c5340a1140b651a8
       Handler: app.lambdaHandler
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          ApplicationId:
+            Ref: ApplicationId
+          APIkey:
+            Ref: APIkey
       Policies:
       - Statement:
         - Sid: PinpointAccess
@@ -69,7 +75,7 @@ Resources:
     Type: AWS::SNS::Topic
 Outputs:
   smsResponderFunction:
-    Description: Hello World Lambda Function ARN
+    Description: Lambda Function ARN
     Value:
       Fn::GetAtt:
       - smsResponderFunction
