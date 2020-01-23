@@ -25,7 +25,7 @@ Important: this application uses Amazon Pinpoint's SMS long codes. There are cos
 ## Requirements
 
 * AWS CLI already configured with Administrator permission
-* [NodeJS 8.10+ installed](https://nodejs.org/en/download/)
+* [NodeJS 12.x installed](https://nodejs.org/en/download/)
 
 ## Installation Instructions
 
@@ -46,6 +46,6 @@ Important: this application uses Amazon Pinpoint's SMS long codes. There are cos
 
 ==============================================
 
-Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 SPDX-License-Identifier: MIT-0

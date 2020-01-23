@@ -10,7 +10,7 @@ Metadata:
     Description: This application responds to an incoming SMS (with format 'weather <<zipcode>>') with current weather conditions.
     Author: James Beswick
     SpdxLicenseId: mit-0
-    LicenseUrl: LICENSE.txt
+    LicenseUrl: license.txt
     ReadmeUrl: README.md
     Labels: ['SMS', 'weather', 'pinpoint', 'lambda', 'nodejs']
     HomePageUrl: https://github.com/jbesw/aws-serverless-sar-pinpoint-weather-bot.git
@@ -42,7 +42,7 @@ Resources:
     Properties:
       CodeUri: smsResponderFunction/
       Handler: app.lambdaHandler
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Environment:
         Variables:
           ApplicationId: !Ref ApplicationId
@@ -71,7 +71,7 @@ Resources:
 
 Outputs:
   smsResponderFunction:
-    Description: "Hello World Lambda Function ARN"
+    Description: "Lambda Function ARN"
     Value: !GetAtt smsResponderFunction.Arn
   smsResponderFunctionIamRole:
     Description: "Implicit IAM Role created for function"

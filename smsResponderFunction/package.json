@@ -1,6 +1,6 @@
 {
-  "name": "disqus-poller",
-  "version": "1.0.0",
+  "name": "sms-responder",
+  "version": "1.0.1",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "James Beswick, Amazon Web Services",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.471.0",
-    "axios": "^0.18.1"
+    "aws-sdk": "^2.609.0",
+    "axios": "^0.19.2"
   }
 }
