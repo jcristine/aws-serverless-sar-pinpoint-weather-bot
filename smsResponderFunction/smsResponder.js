@@ -104,7 +104,7 @@ const smsResponder = async (event) => {
 
 	// Send the Voice response
 	const params = {
-		CallerId: msg.originationNumber,
+		CallerId: msg.destinationNumber,
 		//ConfigurationSetName: configurationSet,
 		Content: {
 		  SSMLMessage: {
@@ -113,8 +113,8 @@ const smsResponder = async (event) => {
 			VoiceId: 'Joanna'
 		  }
 		},
-		DestinationPhoneNumber: msg.destinationNumber,
-		OriginationPhoneNumber: msg.originationNumber
+		DestinationPhoneNumber: msg.originationNumber,
+		OriginationPhoneNumber: msg.destinationNumber
 	};
 
 	return console.log(await sendSMS(params))
