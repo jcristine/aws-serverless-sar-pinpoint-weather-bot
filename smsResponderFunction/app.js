@@ -13,6 +13,14 @@
   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/*
+
+  Version History:
+
+    1.0 - 2020-05-20, 08:07:00 AM
+
+*/
+
 'use strict'
 
 /**
