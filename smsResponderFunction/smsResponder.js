@@ -26,14 +26,12 @@ const validateZipCode = function (elementValue){
    return zipCodePattern.test(elementValue)
 }
 
-const sendSMS = async function (params) {
-	//const pinpoint = new AWS.Pinpoint()
-	const pinpointsmsvoice = new AWS.PinpointSMSVoice();
-	console.log('sendSMS called: ', params)
+const sendSMS = async function (SMSparams) {
+	const pinpoint = new AWS.Pinpoint()
+	console.log('sendSMS called: ', SMSparams)
 
-	/*
 	return new Promise((resolve, reject) => {
-		pinpoint.sendMessages(params, function(err, data) {
+		pinpoint.sendMessages(SMSparams, function(err, data) {
 			if(err) {
 				console.error(err)
 				reject(err)
@@ -43,14 +41,15 @@ const sendSMS = async function (params) {
 			}
 		})
 	})
-	*/
+}
 
-	// https://docs.aws.amazon.com/pinpoint/latest/developerguide/send-messages-voice.html
+const sendVoice = async function (VoiceParams) {
+	const pinpointsmsvoice = new AWS.PinpointSMSVoice();
+	console.log('sendVoice called: ', VoiceParams)
 
 	return new Promise((resolve, reject) => {
 
-		//pinpoint.sendVoiceMessage(params, function(err, data) {
-		pinpointsmsvoice.sendVoiceMessage(params, function(err, data) {
+		pinpointsmsvoice.sendVoiceMessage(VoiceParams, function(err, data) {
 			if(err) {
 				console.error(err)
 				reject(err)
@@ -60,7 +59,6 @@ const sendSMS = async function (params) {
 			}
 		})
 	})
-
 }
 
 const smsResponder = async (event) => {
@@ -82,8 +80,7 @@ const smsResponder = async (event) => {
 	}
 
 	// Send the SMS response
-	/*
-	const params = {
+	const SMSparams = {
 		ApplicationId: process.env.ApplicationId,
 		MessageRequest: {
 			Addresses: {
@@ -93,19 +90,16 @@ const smsResponder = async (event) => {
 			},
 			MessageConfiguration: {
 				SMSMessage: {
-					Body: message,
+					Body: 'Ok - calling you with that information, be sure and take the call from (872) 259-5491', // message
 					MessageType: 'PROMOTIONAL',
 					OriginationNumber: msg.destinationNumber
 				}
 			}
 		}
 	}
-	*/
 
 	// Send the Voice response
-	const params = {
-		//CallerId: msg.destinationNumber,
-		//ConfigurationSetName: configurationSet,
+	const VoiceParams = {
 		Content: {
 		  SSMLMessage: {
 			LanguageCode: 'en-US',
@@ -117,7 +111,8 @@ const smsResponder = async (event) => {
 		OriginationPhoneNumber: msg.destinationNumber
 	};
 
-	return console.log(await sendSMS(params))
+	console.log(await sendSMS(SMSparams))
+	return console.log(await sendVoice(VoiceParams))
 }
 
 module.exports = { smsResponder }
