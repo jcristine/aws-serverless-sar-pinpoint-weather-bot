@@ -30,6 +30,7 @@ const sendSMS = async function (params) {
 	const pinpoint = new AWS.Pinpoint()
 	console.log('sendSMS called: ', params)
 
+	/*
 	return new Promise((resolve, reject) => {
 		pinpoint.sendMessages(params, function(err, data) {
 			if(err) {
@@ -41,6 +42,22 @@ const sendSMS = async function (params) {
 			}
 		})
 	})
+	*/
+
+	// https://docs.aws.amazon.com/pinpoint/latest/developerguide/send-messages-voice.html
+
+	return new Promise((resolve, reject) => {
+		pinpoint.sendVoiceMessage(params, function(err, data) {
+			if(err) {
+				console.error(err)
+				reject(err)
+			} else {
+				console.log("Voice message sent. Data: ", data)
+				resolve(data)
+			}
+		})
+	})
+
 }
 
 const smsResponder = async (event) => {
@@ -62,6 +79,7 @@ const smsResponder = async (event) => {
 	}
 
 	// Send the SMS response
+	/*
 	const params = {
 		ApplicationId: process.env.ApplicationId,
 		MessageRequest: {
@@ -79,9 +97,24 @@ const smsResponder = async (event) => {
 			}
 		}
 	}
+	*/
+
+	// Send the Voice response
+	const params = {
+		CallerId: msg.originationNumber,
+		//ConfigurationSetName: configurationSet,
+		Content: {
+		  SSMLMessage: {
+			LanguageCode: 'en-US',
+			Text: '<speak>' + message + '</speak>',
+			VoiceId: 'Joanna'
+		  }
+		},
+		DestinationPhoneNumber: msg.destinationNumber,
+		OriginationPhoneNumber: msg.originationNumber
+	};
 
 	return console.log(await sendSMS(params))
 }
-
 
 module.exports = { smsResponder }
