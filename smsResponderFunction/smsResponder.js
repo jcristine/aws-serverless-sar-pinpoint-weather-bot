@@ -27,7 +27,8 @@ const validateZipCode = function (elementValue){
 }
 
 const sendSMS = async function (params) {
-	const pinpoint = new AWS.Pinpoint()
+	//const pinpoint = new AWS.Pinpoint()
+	const pinpointsmsvoice = new AWS.PinpointSMSVoice();
 	console.log('sendSMS called: ', params)
 
 	/*
@@ -47,7 +48,9 @@ const sendSMS = async function (params) {
 	// https://docs.aws.amazon.com/pinpoint/latest/developerguide/send-messages-voice.html
 
 	return new Promise((resolve, reject) => {
-		pinpoint.sendVoiceMessage(params, function(err, data) {
+
+		//pinpoint.sendVoiceMessage(params, function(err, data) {
+		pinpointsmsvoice.sendVoiceMessage(params, function(err, data) {
 			if(err) {
 				console.error(err)
 				reject(err)
